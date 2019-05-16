@@ -10,10 +10,10 @@
 	</parent>
 
 	<groupId>sc.iview</groupId>
-	<artifactId>minimal-sciview</artifactId>
+	<artifactId>minimal-sciview-example-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>minimal-sciview</name>
+	<name>minimal-sciview-example-project</name>
 	<description>This is a minimal SciView project.</description>
 	<url>http://sc.iview.sc/</url>
 	<inceptionYear>2018</inceptionYear>
@@ -60,18 +60,18 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/kephale/minimal-sciview</connection>
-		<developerConnection>scm:git:git@github.com:kephale/minimal-sciview</developerConnection>
+		<connection>scm:git:git://github.com/scenerygraphics/minimal-sciview-example-project</connection>
+		<developerConnection>scm:git:git@github.com:scenerygraphics/minimal-sciview-example-project</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/kephale/minimal-sciview</url>
+		<url>https://github.com/scenerygraphics/minimal-sciview-example-project</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/kephale/minimal-sciview/issues</url>
+		<url>https://github.com/scenerygraphics/minimal-sciview-example-project/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/kephale/minimal-sciview</url>
+		<url>https://travis-ci.org/scenerygraphics/minimal-sciview-example-project</url>
 	</ciManagement>
 
 	<properties>
