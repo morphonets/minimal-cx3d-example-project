@@ -82,6 +82,9 @@
 		<license.copyrightOwners>Board of Regents of the University of Idaho.</license.copyrightOwners>
 		<license.projectName>Minimal sciview.</license.projectName>
 
+		<sciview.version>10a5a47</sciview.version>
+		<scenery.version>0957207</scenery.version>
+
 		<!-- NB: Deploy releases to the ImageJ Maven repository. -->
 		<releaseProfiles>deploy-to-imagej</releaseProfiles>
 	</properties>
