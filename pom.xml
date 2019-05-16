@@ -411,13 +411,6 @@
 			but with <classifier>sources</classifier> for each.
 			-->
 			<dependencies>
-				<dependency>
-					<groupId>net.imagej</groupId>
-					<artifactId>imagej</artifactId>
-					<version>${project.version}</version>
-					<classifier>sources</classifier>
-				</dependency>
-
 				<!-- ImageJ dependencies -->
 				<dependency>
 					<groupId>net.imagej</groupId>
