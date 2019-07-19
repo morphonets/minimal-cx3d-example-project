@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>25.0.0</version>
+		<version>27.0.1</version>
 		<relativePath />
 	</parent>
 
@@ -82,8 +82,8 @@
 		<license.copyrightOwners>Board of Regents of the University of Idaho.</license.copyrightOwners>
 		<license.projectName>Minimal sciview.</license.projectName>
 
-		<sciview.version>10a5a47</sciview.version>
-		<scenery.version>0957207</scenery.version>
+		<sciview.version>1b5f96d</sciview.version>
+		<scenery.version>5b86e130</scenery.version>
 
 		<!-- NB: Deploy releases to the ImageJ Maven repository. -->
 		<releaseProfiles>deploy-to-imagej</releaseProfiles>
