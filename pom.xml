@@ -10,16 +10,16 @@
 	</parent>
 
 	<groupId>sc.iview</groupId>
-	<artifactId>minimal-sciview-example-project</artifactId>
+	<artifactId>minimal-cx3d-example-project</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>minimal-sciview-example-project</name>
-	<description>This is a minimal SciView project.</description>
+	<name>minimal-cx3d-example-project</name>
+	<description>This is a minimal Cx3D project.</description>
 	<url>http://sc.iview.sc/</url>
-	<inceptionYear>2018</inceptionYear>
+	<inceptionYear>2019</inceptionYear>
 	<organization>
-		<name>graphics.scenery</name>
-		<url>http://scenery.graphics/</url>
+		<name>MorphoNets</name>
+		<url>https://github.com/morphonets</url>
 	</organization>
 	<licenses>
 		<license>
@@ -46,9 +46,9 @@
 	</developers>
 	<contributors>
 		<contributor>
-			<name>Curtis Rueden</name>
-			<url>http://imagej.net/User:ctrueden</url>
-			<properties><id>ctrueden</id></properties>
+			<name>Tiago Ferreira</name>
+			<url>http://imagej.net/User:tferr</url>
+			<properties><id>tferr</id></properties>
 		</contributor>
 	</contributors>
 
@@ -60,30 +60,32 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/scenerygraphics/minimal-sciview-example-project</connection>
-		<developerConnection>scm:git:git@github.com:scenerygraphics/minimal-sciview-example-project</developerConnection>
+		<connection>scm:git:git://github.com/morphonets/minimal-cx3d-example-project</connection>
+		<developerConnection>scm:git:git@github.com:morphonets/minimal-cx3d-example-project</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/scenerygraphics/minimal-sciview-example-project</url>
+		<url>https://github.com/morphonets/minimal-cx3d-example-project</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/scenerygraphics/minimal-sciview-example-project/issues</url>
+		<url>https://github.com/morphonets/minimal-cx3d-example-project/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/scenerygraphics/minimal-sciview-example-project</url>
+		<url>https://travis-ci.org/morphonets/minimal-cx3d-example-project</url>
 	</ciManagement>
 
 	<properties>
-		<main-class>sc.iview.minimal.Main</main-class>
-		<package-name>net.imagej</package-name>
+		<main-class>sc.iview.cx3d.minimal.MyDemo</main-class>
+		<package-name>sc.iview.cx3d</package-name>
 
 		<license.licenseName>bsd_2</license.licenseName>
 		<license.copyrightOwners>Board of Regents of the University of Idaho.</license.copyrightOwners>
-		<license.projectName>Minimal sciview.</license.projectName>
+		<license.projectName>Minimal Cx3D.</license.projectName>
 
 		<sciview.version>1b5f96d</sciview.version>
 		<scenery.version>5b86e130</scenery.version>
+		<cx3d.version>89a7f09</cx3d.version>
+		<snt.version>76b847129891</snt.version>
 
 		<!-- NB: Deploy releases to the ImageJ Maven repository. -->
 		<releaseProfiles>deploy-to-imagej</releaseProfiles>
@@ -91,8 +93,12 @@
 
 	<repositories>
 		<repository>
-			<id>imagej.public</id>
-			<url>http://maven.imagej.net/content/groups/public</url>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+		<repository>
+			<id>scijava.public</id>
+			<url>https://maven.scijava.org/content/groups/public</url>
 		</repository>
 	</repositories>
 
@@ -101,6 +107,16 @@
 		<dependency>
 			<groupId>sc.iview</groupId>
 			<artifactId>sciview</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.morphonets</groupId>
+			<artifactId>cx3d</artifactId>
+			<version>${cx3d.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.fiji</groupId>
+			<artifactId>Simple_Neurite_Tracer</artifactId>
+			<version>${snt.version}</version>
 		</dependency>
 
 		<!-- ImageJ dependencies -->

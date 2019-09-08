@@ -28,36 +28,116 @@
  */
 package sc.iview.minimal;
 
+import graphics.scenery.SceneryBase;
+import org.jgrapht.graph.DefaultDirectedGraph;
+import org.scijava.command.CommandService;
+import sc.iview.cx3d.Param;
+import sc.iview.cx3d.cells.Cell;
+import sc.iview.cx3d.cells.CellFactory;
+import sc.iview.cx3d.localBiology.NeuriteElement;
+import sc.iview.cx3d.simulations.ECM;
+import sc.iview.cx3d.simulations.Scheduler;
+import sc.iview.cx3d.simulations.tutorial.RandomBranchingModule;
+import io.scif.SCIFIOService;
+import net.imagej.ImageJService;
+import org.jgrapht.graph.DefaultDirectedWeightedGraph;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.scijava.Context;
+import org.scijava.ItemIO;
 import org.scijava.command.Command;
 import org.scijava.plugin.Menu;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
+import org.scijava.service.SciJavaService;
+import org.scijava.thread.ThreadService;
 import org.scijava.util.Colors;
+import sc.fiji.snt.SNTService;
+import sc.fiji.snt.Tree;
+import sc.fiji.snt.analysis.graph.GraphUtils;
+import sc.fiji.snt.util.SWCPoint;
+import sc.fiji.snt.viewer.Viewer3D;
 import sc.iview.SciView;
-import sc.iview.vector.ClearGLVector3;
-import sc.iview.vector.Vector3;
+import sc.iview.SciViewService;
 
+import java.util.HashMap;
+import java.util.Vector;
+
+import static sc.iview.cx3d.utilities.Matrix.randomNoise;
 import static sc.iview.commands.MenuWeights.DEMO;
 import static sc.iview.commands.MenuWeights.DEMO_LINES;
 
 /**
- * Make a sphere.
+ * Random branching demo from Cx3D
  *
  * @author Kyle Harrington
  */
-@Plugin(type = Command.class, label = "My Demo", menuRoot = "SciView", //
+@Plugin(type = Command.class, label = "Random Branching", menuRoot = "SciView", //
         menu = { @Menu(label = "Demo", weight = DEMO), //
-                 @Menu(label = "My Demo") })
+                 @Menu(label = "Cx3D", weight = DEMO), //
+                 @Menu(label = "Random Branching", weight = DEMO_LINES) })
 public class MyDemo implements Command {
 
     @Parameter
     private SciView sciView;
 
+    @Parameter
+    private Context context;
+
+    @Parameter
+    private SNTService sntService;
+
+    @Parameter(type = ItemIO.OUTPUT)
+    private Tree tree;
+
+    @Parameter(label = "Simulation end time")
+    private float maxTime = 2;
+
     @Override
     public void run() {
+        //ECM ecm = ECM.getInstance(getContext());
+        ECM ecm = ECM.getInstance(context);
+		for (int i = 0; i < 18; i++) {
+			ecm.getPhysicalNodeInstance(randomNoise(1000,3));
+		}
+		ECM.setRandomSeed(7L);
 
-        sciView.addSphere();
+        Cell c = CellFactory.getCellInstance(randomNoise(40, 3));
+        c.setColorForAllPhysicalObjects(Param.GRAY);
+        double[] pos = c.getSomaElement().getLocation();
+        NeuriteElement neurite = c.getSomaElement().extendNewNeurite(new double[] {0,0,1});
+        neurite.getPhysicalCylinder().setDiameter(2);
+        neurite.addLocalBiologyModule(new RandomBranchingModule());
 
-        sciView.centerOnNode( sciView.getActiveNode() );
+		Scheduler.simulate(maxTime);
+
+        DefaultDirectedGraph graph = sc.iview.cx3d.utilities.GraphUtils.cellToGraph(c);
+
+        // This should work for Cx3D trees
+        Tree tree = GraphUtils.createTree(graph);
+        tree.setColor(Colors.RED);
+        sntService.initialize(true);
+        sntService.loadTree(tree);
+
+        Viewer3D recViewer = new Viewer3D(context);
+        recViewer.add(tree);
+        recViewer.show();
+
+    }
+
+    public static void main( String... args ) {
+        SceneryBase.xinitThreads();
+
+        System.setProperty( "scijava.log.level:sc.iview", "debug" );
+        Context context = new Context( ImageJService.class, SciJavaService.class, SCIFIOService.class, ThreadService.class);
+
+        //UIService ui = context.service( UIService.class );
+        //if( !ui.isVisible() ) ui.showUI();
+
+        // Currently Cx3D demos need to make their own SciView instance
+//        SciViewService sciViewService = context.service( SciViewService.class );
+//        SciView sciView = sciViewService.getOrCreateActiveSciView();
+
+        CommandService commandService = context.service(CommandService.class);
+        commandService.run(MyDemo.class,true,new Object[]{});
     }
 }
