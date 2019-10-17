@@ -1,3 +1,6 @@
+# minimal-cx3d-example-project
+Minimal Cx3D example project
+
 This is a minimal README for a minimal [SciView](http://sc.iview.sc) project
 
 # LICENSING
