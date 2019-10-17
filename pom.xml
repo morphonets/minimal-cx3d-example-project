@@ -82,10 +82,10 @@
 		<license.copyrightOwners>Board of Regents of the University of Idaho.</license.copyrightOwners>
 		<license.projectName>Minimal Cx3D.</license.projectName>
 
-		<sciview.version>1b5f96d</sciview.version>
-		<scenery.version>5b86e130</scenery.version>
-		<cx3d.version>89a7f09</cx3d.version>
-		<snt.version>76b847129891</snt.version>
+		<sciview.version>7b5befb</sciview.version>
+		<scenery.version>6965d73a</scenery.version>
+		<cx3d.version>a6b9d72</cx3d.version>
+		<snt.version>336942f</snt.version>
 
 		<!-- NB: Deploy releases to the ImageJ Maven repository. -->
 		<releaseProfiles>deploy-to-imagej</releaseProfiles>
